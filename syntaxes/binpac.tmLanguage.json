@@ -1,0 +1,174 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "BinPAC",
+	"fileTypes": [".pac"],
+	"patterns": [
+		{
+			"begin": "\\{\\s*$",
+			"end": "^\\s*\\}",
+			"patterns": [
+				{
+					"include": "#declarations"
+				},
+				{
+					"include": "#keywords"
+				},
+				{
+					"include": "#strings"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#types"
+				},
+				{
+					"include": "#constants"
+				},
+				{
+					"include": "#operator"
+				},
+				{
+					"begin": "%{",
+					"end": "%}",
+					"patterns": [
+						{
+							"include": "source.cpp"
+						}
+					]
+				}
+			]
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#declarations"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"begin": "\\(",
+			"end": "\\)",
+			"patterns": [
+				{
+					"include": "#types"
+				}
+			]
+		},
+		{
+			"begin": "%(|header|code|member|init|cleanup|include|extern){",
+			"end": "%}",
+			"patterns": [
+				{
+					"include": "source.cpp"
+				}
+			]
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.binpac",
+				"match": "\\b(if|else|while|for|return|withinput|case|of)\\b"
+			},
+			{
+				"name": "variable.other.binpac",
+				"match": "&\\b(length|let|byteorder|enforce|if|requires|until|chunked|exportsourcedata|refcount|check|restofdata|transient)\\b"
+			},
+			{
+				"name": "constant.language.binpac",
+				"match": "\\b(littleendian|bigendian)\\b"
+			}
+		]
+		},
+		"strings": {
+			"name": "string.quoted.double.binpac",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.binpac",
+					"match": "\\\\."
+				}
+			]
+		},
+		"declarations": {
+			"patterns": [
+				{
+					"name": "storage.modifier.declaration.binpac",
+					"match": "\\b(type|function|enum|refine|redef|record)\\b"
+				}
+			]
+
+		},
+		"comments": {
+			"begin": "#",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.binpac"
+				}
+			},
+			"end": "$",
+			"name": "comment.line.number-sign.binpac"
+		},
+		"types": {
+			"patterns": [
+				{
+					"name": "storage.type.binpac",
+					"match": "\\b(bool|bytestring|uint|uint8|uint16|uint32|uint64|empty)\\b"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "constant.numeric.integer.hexadecimal.binpac",
+					"match": "\\b(0(x|X)[0-9a-fA-F]+)\\b"
+				},
+				{
+					"match": "(?<!\\.|:)(\\s*-?)\\b([0-9]+)\\b(?!\\.|:|/|\\s((sec|min|day)s?))",
+					"name": "constant.numeric.integer.decimal.binpac"
+				},
+				{
+					"match": "\\b(true|false)\\b",
+					"name": "constant.language.boolean.binpac"
+				},
+				{
+					"match": "\\b(default)\\b",
+					"name": "constant.language.other.binpac"
+				},
+				{
+					"match": "(?<![0-9])(\\s*-?)\\.\\b([0-9]*)\\b(?!\\.)|(?<!\\.)(\\s*-?)\\b([0-9]+\\.[0-9]+)\\b(?!\\.)",
+					"name": "constant.numeric.double.binpac"
+				}
+			]
+		},
+		"operator": {
+			"patterns": [
+				{
+					"match": "(<|<\\=|>\\=|>|\\=\\=|\\!\\=)",
+					"name": "keyword.operator.comparison.binpac"
+				},
+				{
+					"match": "(\\+\\=|-\\=|\\*\\=|/\\=)",
+					"name": "keyword.operator.assignment.augmented.binpac"
+				},
+				{
+					"match": "(\\+\\+|\\-\\-)",
+					"name": "keyword.operator.increment-decrement.binpac"
+				},
+				{
+					"match": "(\\+|\\-|\\*|/|%|&&|\\|\\|)(?!\\+|\\-|{|})",
+					"name": "keyword.operator.arithmetic.binpac"
+				},
+				{
+					"match": "(\\=)",
+					"name": "keyword.operator.assignment.binpac"
+				}
+			]
+		}
+	},
+	"scopeName": "source.binpac"
+}
