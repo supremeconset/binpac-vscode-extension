@@ -1,0 +1,29 @@
+{
+    "Function declaration": {
+        "prefix": "func",
+        "body": [
+            "function ${1:function_name}(${2:param}: ${3:param_type}): ${4:return_type}",
+            "    %{",
+            "    ${5:# Code here}",
+            "    %}"
+        ],
+        "description": "BinPAC Function declaration"
+    },
+    "Enum declaration": {
+        "prefix": "en",
+        "body": [
+            "enum ${1:name} {",
+            "    $2",
+            "};"
+        ],
+        "decscription": "Enum declaration"
+    },
+    "Type declaration": {
+        "prefix": "ty",
+        "body": [
+            "type ${1:name} = ${2:arg_type} {",
+            "    $3",
+            "};"
+        ]
+    }
+}

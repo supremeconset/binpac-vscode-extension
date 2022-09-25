@@ -1,0 +1,37 @@
+{
+    "name": "binpac-vscode-extension",
+    "displayName": "BinPAC VSCode extension",
+    "description": "BinPAC language support for VSCode",
+    "version": "0.0.3",
+    "publisher": "supremeconset",
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Snippets"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/supremeconset/binpac-vscode-extension"
+    },
+    "contributes": {
+        "languages": [{
+            "id": "binpac",
+            "aliases": ["BinPAC", "binpac"],
+            "extensions": [".pac"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "binpac",
+            "scopeName": "source.binpac",
+            "path": "./syntaxes/binpac.tmLanguage.json"
+        }],
+        "snippets": [
+            {
+                "language": "binpac",
+                "path": "./snippets/snippets.json"
+            }
+        ]
+    }
+}
